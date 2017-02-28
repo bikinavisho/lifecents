@@ -1,0 +1,40 @@
+/*  Mobile-specific Styling  */
+@media screen and (max-width: 768px) {
+    .shell {
+        padding-right: 1in;
+        padding-left: 1in;
+    }
+}
+
+/* Desktop-specific Styling */
+@media screen and (min-width: 768px) {
+	.shell {
+		max-width: 7in;
+		margin-left: auto;
+		margin-right: auto;
+		padding: 32px 32px 32px 32px;
+	}
+}
+
+.shell {
+	background-color: darkgray;
+}
+
+html{
+    font-family: Ubuntu, sans-serif;
+    background-color: grey;
+    padding: 3em;
+}
+
+p {
+    /* This Puts Indentations on Every Paragraph */
+    text-indent: 1em;
+}
+
+/* This class is for centering an element */
+.centered {
+    text-align: center;
+    vertical-align: middle;
+    margin-left: auto;
+    margin-right: auto;
+}

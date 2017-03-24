@@ -4,6 +4,9 @@
         padding-right: 1in;
         padding-left: 1in;
     }
+    #site-name {
+        margin-left: 2em;
+    }
 }
 
 /* Desktop-specific Styling */
@@ -14,6 +17,9 @@
 		margin-right: auto;
 		padding: 32px 32px 32px 32px;
 	}
+    #site-name {
+        margin-left: 1.5em;
+    }
 }
 
 .shell {
@@ -22,8 +28,10 @@
 
 html{
     font-family: Ubuntu, sans-serif;
-    background-color: grey;
-    padding: 3em;
+}
+
+body {
+    background-color: darkgray;
 }
 
 p {
@@ -37,4 +45,14 @@ p {
     vertical-align: middle;
     margin-left: auto;
     margin-right: auto;
+}
+
+
+
+#logo {
+    position: fixed;
+    left: 1em;
+    top: 0.75em;
+    width: 2em;
+    height: 2em;
 }

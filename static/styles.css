@@ -47,8 +47,14 @@ p {
     margin-right: auto;
 }
 
+/* =================================
+
+Put more specific styles below this
+
+====================================  */
 
 
+/* This is the styling for the LC logo displayed in the top left corner */
 #logo {
     position: fixed;
     left: 1em;

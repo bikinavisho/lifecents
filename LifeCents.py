@@ -41,9 +41,18 @@ def render_homepage():
     return flask.render_template('index.html')
 
 
-@app.route('/edit')
+@app.route('/budget/edit')
 def edit_budget_form():
-    return flask.render_template('edit_budget.html')
+    if flask.session['auth_user'] or flask.g.user:
+        return flask.render_template('edit_budget.html')
+    else:
+        return flask.redirect(flask.url_for('render_homepage'), code=401)
+
+
+@app.route('/budget/edit', methods=['POST'])
+def submit_edit_budget():
+
+    return
 
 
 # ================================
@@ -102,7 +111,7 @@ def create_user():
     existing = dataBaser.User.query.filter_by(name=name).first()
 
     if existing is not None:
-        # oops, found your doppelgänger
+        # oops, found your doppelganger
         error = "Username already taken"
 
     if error:

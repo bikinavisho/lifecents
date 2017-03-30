@@ -43,10 +43,10 @@ def render_homepage():
 
 @app.route('/budget/edit')
 def edit_budget_form():
-    if flask.session['auth_user'] or flask.g.user:
+    if 'auth_user' in flask.session:
         return flask.render_template('edit_budget.html')
     else:
-        return flask.redirect(flask.url_for('render_homepage'), code=401)
+        return flask.redirect(flask.url_for('login_page2', error='You must log in first!'), code=303)
 
 
 @app.route('/budget/edit', methods=['POST'])
@@ -61,6 +61,11 @@ def submit_edit_budget():
 @app.route('/login')
 def login_page():
     return flask.render_template('login.html')
+
+
+@app.route('/login/?<error>')
+def login_page2(error):
+    return flask.render_template('login.html', error_msg=error)
 
 
 @app.route('/register')

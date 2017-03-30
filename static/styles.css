@@ -24,6 +24,7 @@
 
 .shell {
 	background-color: darkgray;
+    padding-top: 5%;
 }
 
 html{
@@ -47,18 +48,37 @@ p {
     margin-right: auto;
 }
 
+/* This class is for error messages */
+.error {
+    color: red;
+    font-style: italic;
+}
+
 /* =================================
 
 Put more specific styles below this
 
 ====================================  */
 
+.navbar-head {
+    vertical-align: middle;
+}
+
 
 /* This is the styling for the LC logo displayed in the top left corner */
 #logo {
     position: fixed;
-    left: 1em;
-    top: 0.75em;
+    left: 0.65em;
+    top: 0.5em;
     width: 2em;
     height: 2em;
 }
+
+#big-logo {
+    width: 5em;
+    height: 5em;
+    position: relative;
+}
+
+
+

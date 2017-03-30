@@ -1,0 +1,45 @@
+<!-- This plugs in our base template -->
+{% extends 'base.html' %}
+
+{% block title %} Login {% endblock %}
+
+{% block content %}
+
+<!-- Put everything inside of shell for formatting purposes -->
+<div class="shell">
+    <div id="login">
+        <h1>Login</h1>
+        {% if error_msg %}
+            <p class="centered error">{{ error_msg }}</p>
+        {% endif %}
+        {% if g.user %}
+            <h3 class="centered">You're already logged in, silly!</h3>
+            <p class="centered"><a href="{{ url_for('render_homepage' ) }}">Return Home</a></p>
+        {% else %}
+        <form class="pure-form pure-form-aligned" method="POST" action="/login">
+            <fieldset>
+                <div class="pure-control-group">
+                    <label for="username">Username</label>
+                    <input name="username" id="username" type="text" maxlength="60">
+                </div>
+
+                <div class="pure-control-group">
+                    <label for="password">Password</label>
+                    <input name="password" id="password" type="password" placeholder="">
+                </div>
+
+                <div class="pure-controls">
+                    <button type="submit" class="pure-button pure-button-primary"><i class="fa fa-sign-in"></i> Login</button>
+                </div>
+            </fieldset>
+
+        </form>
+    {% endif %}
+    </div>
+
+
+</div>
+
+    <script src="{{ url_for('static', filename='login-tabs.js') }}" async></script>
+
+{% endblock %}

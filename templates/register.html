@@ -1,0 +1,42 @@
+<!-- This plugs in our base template -->
+{% extends 'base.html' %}
+
+{% block title %} Register {% endblock %}
+
+{% block content %}
+
+<!-- Put everything inside of shell for formatting purposes -->
+<div class="shell">
+    <div id="register">
+        <h1>Register</h1>
+        {% if error_msg %}
+            <p class="centered error">{{ error_msg }}</p>
+        {% endif %}
+        <form class="pure-form pure-form-aligned" enctype="multipart/form-data" method="POST" action="/create_user">
+            <div class="pure-control-group">
+                <label for="create_username">Username</label>
+                <input name="username" id="create_username" type="text" placeholder="" required>
+            </div>
+
+            <div class="pure-control-group">
+                <label for="create_password">Password</label>
+                <input name="password" id="create_password" type="password" placeholder="" required>
+            </div>
+
+            <div class="pure-control-group">
+                <label for="confirm_password">Confirm Password</label>
+                <input name="confirm_password" id="confirm_password" type="password" placeholder="" required>
+            </div>
+
+            <div class="pure-controls">
+                <button type="submit" class="pure-button pure-button-primary"><i class="fa fa-plus" aria-hidden="true"></i> Create Account</button>
+            </div>
+
+
+        </form>
+    </div>
+
+
+</div>
+
+{% endblock %}

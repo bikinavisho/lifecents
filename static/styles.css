@@ -1,8 +1,8 @@
 /*  Mobile-specific Styling  */
 @media screen and (max-width: 768px) {
     .shell {
-        padding-right: 1in;
-        padding-left: 1in;
+        padding-right: 1ex;
+        padding-left: 1ex;
     }
     #site-name {
         margin-left: 2em;
@@ -24,7 +24,7 @@
 
 .shell {
 	background-color: darkgray;
-    padding-top: 5%;
+    padding-top: 4em;
 }
 
 html{

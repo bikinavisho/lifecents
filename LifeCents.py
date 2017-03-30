@@ -41,6 +41,11 @@ def render_homepage():
     return flask.render_template('index.html')
 
 
+@app.route('/edit')
+def edit_budget_form():
+    return flask.render_template('edit_budget.html')
+
+
 # ================================
 #           LOGIN LOGIC
 # ================================

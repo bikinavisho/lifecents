@@ -14,18 +14,35 @@
 
     <form class="pure-form pure-form-aligned pure-g" method="POST" action="/budget/edit">
 
-        <fieldset class="pure-group pure-u-1 pure-u-md-11-24">
-            <legend>Expenses <span class="plus"><i class="fa fa-plus" aria-hidden="true"></i></span></legend>
-            <input type="text" class="pure-input-1" placeholder="Expense">
-            <input type="number" class="pure-input-1" placeholder="Amount">
-        </fieldset>
+        <div class="pure-u-1 pure-u-md-11-24">
+            <fieldset class="pure-group">
+                <legend>Income <span class="plus"><i class="fa fa-plus" aria-hidden="true"></i></span></legend>
+                <input type="text" class="pure-input-1" placeholder="Income">
+                <div class="input-icon">
+                    <i>$</i>
+                    <input type="number" class="pure-input-1" placeholder="Amount">
+                </div>
+            </fieldset>
+            <fieldset class="pure-group">
+                <input type="text" class="pure-input-1" placeholder="Income">
+                <div class="input-icon">
+                    <i>$</i>
+                    <input type="number" class="pure-input-1" placeholder="Amount">
+                </div>
+            </fieldset>
+
+
+        </div>
 
         <div class="pure-u-md-1-12"></div>
 
         <fieldset class="pure-group pure-u-1 pure-u-md-11-24">
-            <legend>Income <span class="plus"><i class="fa fa-plus" aria-hidden="true"></i></span></legend>
-            <input type="text" class="pure-input-1" placeholder="Income">
-            <input type="number" class="pure-input-1" placeholder="Amount">
+            <legend>Expenses <span class="plus"><i class="fa fa-plus" aria-hidden="true"></i></span></legend>
+            <input type="text" class="pure-input-1" placeholder="Expense">
+            <div class="input-icon">
+                <i>$</i>
+                <input type="number" class="pure-input-1" placeholder="Amount">
+            </div>
         </fieldset>
 
         <button type="submit" class="pure-button pure-input-1-2 pure-button-primary centered">Submit</button>
@@ -34,4 +51,6 @@
 
 
 </div>
+
+     <script src="{{ url_for('static', filename='form_control.js') }}"></script>
 {% endblock %}

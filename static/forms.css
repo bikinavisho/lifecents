@@ -23,3 +23,7 @@
     padding-left: 1.5em !important;
     position: static !important;
 }
+
+#income-count {
+    display: none;
+}

@@ -51,8 +51,13 @@ def edit_budget_form():
 
 @app.route('/budget/edit', methods=['POST'])
 def submit_edit_budget():
-
-    return
+    total = flask.request.form['income-count']
+    i = 1
+    while i <= int(total):
+        data = flask.request.form['income'+str(i)]
+        print(data)
+        i += 1
+    return flask.redirect(flask.url_for('render_homepage'))
 
 
 # ================================

@@ -60,9 +60,12 @@
                 {% if expenses %}
                     <div class="pure-g">
                     {% for exp in expenses %}
-                        <input id="db-e-{{ loop.index }}id" value="{{ exp.id }}" hidden>
-                        <div class="pure-u-1 pure-u-md-1-2"><input class="pure-input-1 editables" id="db-e-{{ loop.index }}n" value="{{ exp.name }}" readonly></div>
-                        <div class="pure-u-1 pure-u-md-1-2"><input class="pure-input-1 editables" id="db-e-{{ loop.index }}v" value="${{ exp.value }}" readonly></div>
+                        <div> {# for deleting #}
+                            <input id="db-e-{{ loop.index }}id" value="{{ exp.id }}" hidden>
+                            <div class="pure-u-1 pure-u-md-1-8"><button type="button" class="pure-button x-out" id="db-e-{{ loop.index }}"><i class="fa fa-times" aria-hidden="true"></i></button></div>
+                            <div class="pure-u-1 pure-u-md-1-2"><input class="pure-input-1 editables" id="db-e-{{ loop.index }}n" value="{{ exp.name }}" readonly></div>
+                            <div class="pure-u-1 pure-u-md-3-8"><input class="pure-input-1 editables" id="db-e-{{ loop.index }}v" value="${{ exp.value }}" readonly></div>
+                        </div>
                     {% endfor %}
                     </div><br/>
                 {% endif %}

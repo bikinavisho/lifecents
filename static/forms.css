@@ -27,3 +27,11 @@
 #income-count {
     display: none;
 }
+
+.x-out {
+    background-color: transparent;
+}
+.x-out:hover, .x-out:focus {
+    background-image: -webkit-linear-gradient(transparent, rgba(210,0,0, 0.05) 40%, rgba(210,0,0, 0.10));
+    background-image: linear-gradient(transparent, rgba(200,0,0, 0.05) 40%, rgba(210,0,0, 0.10));
+}

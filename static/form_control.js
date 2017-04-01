@@ -80,6 +80,25 @@ $(document).ready(function() {
         }
     });
 
+    //Delete database entry upon click of X
+    $('.x-out').click(function(){
+        var confirmation = window.confirm("Are you sure you want to delete this entry?");
+        if(confirmation) {
+            // Get id of this item
+            var thisId = $(this).attr('id');
+            // Get id of db id item
+            var dbIdId = thisId.concat('id');
+            var dbId = $('#'+dbIdId).val();
+            // Delete the database entry
+            socket.emit('deletion', dbId);
+
+            // Remove visually from page
+            var $parentDiv1 = $(this).parent();
+            var $parentDiv2 = $parentDiv1.parent();
+            $parentDiv2.remove();
+        }
+    });
+
 });
 
 

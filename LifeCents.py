@@ -2,7 +2,8 @@ import flask
 import dataBaser
 import base64, os, bcrypt, re
 
-from init import db, app
+from init import db, app, socket_io
+from api import check_request
 
 
 @app.before_request
@@ -40,7 +41,15 @@ def render_homepage():
 @app.route('/budget/edit')
 def edit_budget_form():
     if 'auth_user' in flask.session:
-        return flask.render_template('edit_budget.html')
+        budgets = dataBaser.Budget.query.filter_by(user_id=flask.g.user.id).all()
+        incomes = []
+        expenses = []
+        for budget in budgets:
+            if budget.type:
+                expenses.append(budget)
+            else:
+                incomes.append(budget)
+        return flask.render_template('edit_budget.html', incomes=incomes, expenses=expenses)
     else:
         return flask.redirect(flask.url_for('login_page2', error='You must log in first!'), code=303)
 
@@ -48,6 +57,7 @@ def edit_budget_form():
 @app.route('/budget/edit', methods=['POST'])
 def submit_edit_budget():
     if 'auth_user' in flask.session:
+        check_request()
         user = flask.g.user
         # Iterate through incomes
         income_total = flask.request.form['income-count']
@@ -95,6 +105,7 @@ def submit_edit_budget():
     # budgets = dataBaser.Budget.query.all()
     # print(budgets)
 
+    # TODO redirect to budget page (doesn't exist yet)
     return flask.redirect(flask.url_for('render_homepage'))
 
 
@@ -197,4 +208,5 @@ def handle_logout():
 
 # This runs the application which is our website
 if __name__ == '__main__':
-    app.run()
+    # app.run()
+    socket_io.run(app)

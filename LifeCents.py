@@ -1,12 +1,8 @@
-from flask import Flask
 import flask
-import flask_sqlalchemy
 import dataBaser
 import base64, os, bcrypt, re
 
-app = Flask(__name__)
-app.config.from_pyfile('settings.py')
-db = flask_sqlalchemy.SQLAlchemy(app)
+from init import db, app
 
 
 @app.before_request
@@ -51,12 +47,46 @@ def edit_budget_form():
 
 @app.route('/budget/edit', methods=['POST'])
 def submit_edit_budget():
-    total = flask.request.form['income-count']
-    i = 1
-    while i <= int(total):
-        data = flask.request.form['income'+str(i)]
-        print(data)
-        i += 1
+    if 'auth_user' in flask.session:
+        user = flask.g.user
+        # Iterate through incomes
+        income_total = flask.request.form['income-count']
+        i = 1
+        while i <= int(income_total):
+            inc_name = flask.request.form['income'+str(i)]
+            inc_value = flask.request.form['income-value'+str(i)]
+
+            new_income = dataBaser.Budget()
+            new_income.name = inc_name
+            new_income.value = inc_value
+            new_income.type = False
+            new_income.user_id = user.id
+            user.budgetData.append(new_income)
+
+            db.session.add(new_income)
+
+            i += 1
+        # Iterate through expenses
+        expense_total = flask.request.form['expense-count']
+        i = 1
+        while i <= int(expense_total):
+            exp_name = flask.request.form['expense'+str(i)]
+            exp_value = flask.request.form['expense-value'+str(i)]
+
+            new_expense = dataBaser.Budget()
+            new_expense.name = exp_name
+            new_expense.value = exp_value
+            new_expense.type = True
+            new_expense.user_id = user.id
+            user.budgetData.append(new_expense)
+
+            db.session.add(new_expense)
+
+            i += 1
+
+        # save database changes
+        db.session.commit()
+
     return flask.redirect(flask.url_for('render_homepage'))
 
 

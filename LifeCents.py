@@ -54,16 +54,18 @@ def submit_edit_budget():
         i = 1
         while i <= int(income_total):
             inc_name = flask.request.form['income'+str(i)]
-            inc_value = flask.request.form['income-value'+str(i)]
+            i_v = flask.request.form['income-value'+str(i)]
+            # is there data in there?
+            if inc_name is not "" and i_v is not "":
+                inc_value = 0.0 + float(i_v)
+                new_income = dataBaser.Budget()
+                new_income.name = inc_name
+                new_income.value = inc_value
+                new_income.type = False
+                new_income.user_id = user.id
+                user.budgetData.append(new_income)
 
-            new_income = dataBaser.Budget()
-            new_income.name = inc_name
-            new_income.value = inc_value
-            new_income.type = False
-            new_income.user_id = user.id
-            user.budgetData.append(new_income)
-
-            db.session.add(new_income)
+                db.session.add(new_income)
 
             i += 1
         # Iterate through expenses
@@ -71,21 +73,27 @@ def submit_edit_budget():
         i = 1
         while i <= int(expense_total):
             exp_name = flask.request.form['expense'+str(i)]
-            exp_value = flask.request.form['expense-value'+str(i)]
+            e_v = flask.request.form['expense-value'+str(i)]
 
-            new_expense = dataBaser.Budget()
-            new_expense.name = exp_name
-            new_expense.value = exp_value
-            new_expense.type = True
-            new_expense.user_id = user.id
-            user.budgetData.append(new_expense)
+            if exp_name is not "" and e_v is not "":
+                exp_value = 0.0 + float(e_v)
+                new_expense = dataBaser.Budget()
+                new_expense.name = exp_name
+                new_expense.value = exp_value
+                new_expense.type = True
+                new_expense.user_id = user.id
+                user.budgetData.append(new_expense)
 
-            db.session.add(new_expense)
+                db.session.add(new_expense)
 
             i += 1
 
         # save database changes
         db.session.commit()
+
+    # Test to make sure everything is saving to database
+    # budgets = dataBaser.Budget.query.all()
+    # print(budgets)
 
     return flask.redirect(flask.url_for('render_homepage'))
 

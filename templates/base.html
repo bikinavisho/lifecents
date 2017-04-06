@@ -11,8 +11,14 @@
         <script src="https://use.fontawesome.com/40377eec8d.js"></script>
     <!-- jQuery -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- jQuery Mobile -->
+    {# May be deleted later #}
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js"></script>
     <!-- Socket.io -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
+    <!-- d3JS -->
+        <script src="https://d3js.org/d3.v3.min.js"></script>
     <!-- Bootstrap -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
@@ -49,7 +55,7 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li class="active"><a href="{{ url_for('render_homepage') }}">Home</a></li>
-        <li><a href="#">Budgeting</a></li>
+        <li><a href="{{ url_for('render_budget_page') }}">Budgeting</a></li>
         <li><a href="#">Advice</a></li>
         <li><a href="#">Scheduling</a></li>
       </ul>
@@ -72,5 +78,6 @@
 {% block content %}
     Fill me in!
 {% endblock %}
+
 </body>
 </html>

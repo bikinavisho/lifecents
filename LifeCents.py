@@ -38,10 +38,31 @@ def render_homepage():
     return flask.render_template('index.html')
 
 
+@app.route('/budget')
+def render_budget_page():
+    if 'auth_user' in flask.session:
+        # Get user data (if any)
+        budgets = dataBaser.Budget.query.filter_by(user_id=flask.g.user.id).all()
+        # Separate them into income category and expense category
+        incomes = []
+        expenses = []
+        for budget in budgets:
+            if budget.type:
+                expenses.append(budget)
+            else:
+                incomes.append(budget)
+
+        return flask.render_template('budget.html', incomes=incomes, expenses=expenses)
+    else:
+        return flask.redirect(flask.url_for('login_page2', error='You must log in first!'), code=303)
+
+
 @app.route('/budget/edit')
 def edit_budget_form():
     if 'auth_user' in flask.session:
+        # Get User Data (if any)
         budgets = dataBaser.Budget.query.filter_by(user_id=flask.g.user.id).all()
+        # Separate them into income category and expense category
         incomes = []
         expenses = []
         for budget in budgets:

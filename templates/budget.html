@@ -1,0 +1,51 @@
+<!-- This plugs in our base template -->
+{% extends 'base.html' %}
+
+{% block title %} Budgeting Page {% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='budget_graph.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<!-- Put everything inside of shell for formatting purposes -->
+<div class="shell">
+    <h1>Budget</h1>
+
+    <div id="pie-charts">
+        <span id="chart1"></span>
+        <span id="chart2"></span>
+        <span id="chart3"></span>
+    </div>
+</div>
+
+
+
+{# Specific JavaScipt for this page #}
+
+<script type="text/javascript" async>
+$(document).ready(function() {
+    window.alert("bottoms up");
+    {# Transfer Data from Jinja2 to JavaScript #}
+
+    var income_data = [];
+    {% for income in incomes %}
+        income_data.push({{ income }});
+    {% endfor %}
+
+    var expense_data = [];
+    {% for expense in expenses %}
+        expense_data.push({{ expense }});
+    {% endfor %}
+
+});
+
+</script>
+
+
+<script src="{{ url_for('static', filename='budget_graphs.js') }}" async></script>
+
+{% endblock %}
+
+

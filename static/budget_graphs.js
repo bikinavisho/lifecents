@@ -1,25 +1,54 @@
 /**
  * Created by bianca on 4/6/17.
  */
-// income_data
-// expense_data
+var income_data;
+var expense_data;
+
+var firstTime = true;
+
+socket.open();
+
+// Request data from server
+socket.on('connect', function() {
+	console.log('connected to servelet');
+	if(firstTime) {
+		socket.emit('request_data', 'budget');
+		firstTime = false;
+	}
+
+});
+
+// Receive emit from server
+socket.on('json', function(data) {
+	console.log('received data from server');
+	income_data = data['incomeArray'];
+	expense_data = data['expenseArray'];
+	//array of key value pairs name, value
+	if(income_data.length > 0) {
+		createPieCharts();
+	}
+});
 
 var pie_dimension = $(".shell").css("width");
 pie_dimension *= (1/3);
 
 
-$(document).ready(function() {
+function createPieCharts() {
     //PIE CHART CODE	=================================================
-(function(d3) {window.alert("Triggered");
+(function(d3) {
     //Step 1: Define some data
 
-    var dataset = [
+    var dataset1 = [
 		{ label: 'Apple', count: 80 },
 		{ label: 'Banana', count: 20 },
 		{ label: 'Orange', count: 30 },
 		{ label: 'Grape', count: 99 }
 	];
-	//These  entries correspond to the four segments in our chart
+
+	var dataset = [];
+	for(var i = 0; i < income_data.length; i++) {
+		dataset.push({label: income_data[i].name, count: income_data[i].value})
+	}
 
 	//Step 2: Define Dimensions for chart
 	var width = 200;
@@ -100,6 +129,6 @@ $(document).ready(function() {
     })(window.d3);
 
 
-	
-});
+
+}
 

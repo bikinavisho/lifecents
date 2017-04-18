@@ -111,9 +111,5 @@ socket.on('message', function(msg) {
     console.log('received message %s', msg);
 });
 
-// Receive emit from server
-socket.on('json', function(data) {
-    console.log('received message %s', data);
-});
 
 

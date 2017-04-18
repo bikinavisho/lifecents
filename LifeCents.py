@@ -229,4 +229,5 @@ def handle_logout():
 # This runs the application which is our website
 if __name__ == '__main__':
 	# app.run()
-	socket_io.run(app)
+	port = int(os.environ.get("PORT", 5000))
+	socket_io.run(app, host='0.0.0.0', port=port)

@@ -24,6 +24,9 @@ socket.on('json', function(data) {
 	income_data = data['incomeArray'];
 	expense_data = data['expenseArray'];
 	//array of key value pairs name, value
+
+	//TODO validate so that if user doesn't have budget data yet it doesn't break
+	//TODO make "create budget button" if user doesn't have budget data yet
 	if(income_data.length > 0) {
 		createPieCharts();
 	}

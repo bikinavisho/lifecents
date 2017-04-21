@@ -41,21 +41,14 @@ function createPieCharts() {
 (function(d3) {
     //Step 1: Define some data
 
-    var dataset1 = [
-		{ label: 'Apple', count: 80 },
-		{ label: 'Banana', count: 20 },
-		{ label: 'Orange', count: 30 },
-		{ label: 'Grape', count: 99 }
-	];
-
 	var dataset = [];
 	for(var i = 0; i < income_data.length; i++) {
 		dataset.push({label: income_data[i].name, count: income_data[i].value})
 	}
 
 	//Step 2: Define Dimensions for chart
-	var width = 200;
-	var height = 200;
+	var width = pie_dimension;
+	var height = pie_dimension;
 	var radius = Math.min(width, height) / 2;
 
 	//Define a color scale for chart

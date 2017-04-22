@@ -71,6 +71,7 @@ def socket_message(msg):
 @socket_io.on('deletion')
 def socket_message_deletion(chosen_id):
 	selected_one = dataBaser.Budget.query.filter_by(id=chosen_id).first()
+	print(selected_one.name + " will be deleted")
 	db.session.delete(selected_one)
 	db.session.commit()
 	print('DB entry deleted')

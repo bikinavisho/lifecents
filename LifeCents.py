@@ -95,6 +95,7 @@ def submit_edit_budget():
             i_v = flask.request.form['income-value'+str(i)]
             # is there data in there?
             if inc_name is not "" and i_v is not "":
+                print("Is this floatable? " + i_v)
                 inc_value = 0.0 + float(i_v)
                 new_income = dataBaser.Budget()
                 new_income.name = inc_name

@@ -46,15 +46,20 @@ def render_budget_page():
         budgets = dataBaser.Budget.query.filter_by(user_id=flask.g.user.id).all()
         # Separate them into income category and expense category
         incomes = []
+        income_total = 0
         expenses = []
+        expense_total = 0
         for budget in budgets:
             if budget.type:
                 expenses.append(budget)
+                expense_total += budget.value
             else:
                 incomes.append(budget)
+                income_total += budget.value
 
         return flask.render_template('budget.html', incomes=sorted(incomes, key=attrgetter('value'), reverse=True), 
-                                     expenses=sorted(expenses, key=attrgetter('value'), reverse=True))
+                                     expenses=sorted(expenses, key=attrgetter('value'), reverse=True),
+                                     income_total=income_total, expense_total=expense_total)
     else:
         return flask.redirect(flask.url_for('login_page2', error='You must log in first!'), code=303)
 

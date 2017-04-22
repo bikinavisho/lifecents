@@ -25,8 +25,6 @@ socket.on('json', function(data) {
 	expense_data = data['expenseArray'];
 	//array of key value pairs name, value
 
-	//TODO validate so that if user doesn't have budget data yet it doesn't break
-	//TODO make "create budget button" if user doesn't have budget data yet
 	if(income_data.length > 0) {
 		createPieCharts();
 	}
@@ -34,7 +32,7 @@ socket.on('json', function(data) {
 
 
 function createPieCharts() {
-	var donutWidth = 50;
+	var donutConst = 0.275;
 	// ===========================================================================
     //		PIE CHART CODE	                 =====================================
 	// ===========================================================================
@@ -48,6 +46,7 @@ function createPieCharts() {
 
 	//Step 2: Define Dimensions for chart
 	var pie_dimen = parseInt($("#chart1").css("width")) * .9;
+	var donutWidth = pie_dimen * donutConst;
 	var width = pie_dimen;
 	var height = pie_dimen;
 	var radius = Math.min(width, height) / 2;
@@ -139,6 +138,7 @@ function createPieCharts() {
 
 	//Step 2: Define Dimensions for chart
 	var pie_dimen = parseInt($("#chart3").css("width")) * .9;
+	var donutWidth = pie_dimen * donutConst;
 	var width = pie_dimen;
 	var height = pie_dimen;
 	var radius = Math.min(width, height) / 2;
@@ -238,6 +238,7 @@ function createPieCharts() {
 
 	//Step 2: Define Dimensions for chart
 	var pie_dimen = parseInt($("#chart2").css("width")) * .9;
+	var donutWidth = pie_dimen * donutConst;
 	var width = pie_dimen;
 	var height = pie_dimen;
 	var radius = Math.min(width, height) / 2;

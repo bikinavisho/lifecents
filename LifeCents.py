@@ -95,7 +95,6 @@ def submit_edit_budget():
             i_v = flask.request.form['income-value'+str(i)]
             # is there data in there?
             if inc_name != "" and i_v != "":
-                print("Is this floatable? [" + i_v+"]")
                 inc_value = 0.0 + float(i_v)
                 new_income = dataBaser.Budget()
                 new_income.name = inc_name
@@ -188,6 +187,9 @@ def create_user():
     error = None
     if password != flask.request.form['confirm_password']:
         error = "Passwords don't match"
+    # is the password long enough?
+    if len(password) > 6:
+        error = "Password must be at least 6 characters long"
     # is the login ok?
     if len(name) > 60:
         error = "Username too long"

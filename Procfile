@@ -1,1 +1,1 @@
-web: python LifeCents.py runserver
+web: python LifeCents.py socketserver --debug --reload

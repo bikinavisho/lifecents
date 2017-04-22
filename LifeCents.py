@@ -94,8 +94,8 @@ def submit_edit_budget():
             inc_name = flask.request.form['income'+str(i)]
             i_v = flask.request.form['income-value'+str(i)]
             # is there data in there?
-            if inc_name is not "" and i_v is not "":
-                print("Is this floatable? " + i_v)
+            if inc_name != "" and i_v != "":
+                print("Is this floatable? [" + i_v+"]")
                 inc_value = 0.0 + float(i_v)
                 new_income = dataBaser.Budget()
                 new_income.name = inc_name
@@ -114,7 +114,7 @@ def submit_edit_budget():
             exp_name = flask.request.form['expense'+str(i)]
             e_v = flask.request.form['expense-value'+str(i)]
 
-            if exp_name is not "" and e_v is not "":
+            if exp_name != "" and e_v != "":
                 exp_value = 0.0 + float(e_v)
                 new_expense = dataBaser.Budget()
                 new_expense.name = exp_name

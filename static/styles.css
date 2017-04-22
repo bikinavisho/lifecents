@@ -80,5 +80,8 @@ Put more specific styles below this
     position: relative;
 }
 
+.number {
+	text-align: right;
+}
 
 

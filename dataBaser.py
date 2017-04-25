@@ -27,5 +27,23 @@ class Budget(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
 
+class Post(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    title = db.Column(db.String(60))
+    body = db.Column(db.String(200))
+    ctime = db.Column(db.String(40))
+    time = db.Column(db.Integer)
+    replies = db.relationship('Reply', backref='post')
+    creator_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    # creator_id holds the ID of a valid user
+
+
+class Reply(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    uid = db.Column(db.Integer, db.ForeignKey('user.id'))
+    pid = db.Column(db.Integer, db.ForeignKey('post.id'))
+    body = db.Column(db.String(200))
+
+
 db.create_all(app=app)
 

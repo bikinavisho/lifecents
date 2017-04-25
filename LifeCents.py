@@ -134,7 +134,14 @@ def submit_edit_budget():
     # print(budgets)
 
     return flask.redirect(flask.url_for('render_budget_page'))
+    
+# ================================
+#           ADVICE PAGE
+# ================================
 
+@app.route('/advice')
+def advice_page():
+    return flask.render_template('advice.html')
 
 # ================================
 #           LOGIN LOGIC

@@ -140,7 +140,7 @@ def submit_edit_budget():
 # ================================
 
 @app.route('/advice')
-def advice_page():
+def render_advice_page():
     return flask.render_template('advice.html')
 
 # ================================

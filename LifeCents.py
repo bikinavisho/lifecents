@@ -134,14 +134,15 @@ def submit_edit_budget():
     # print(budgets)
 
     return flask.redirect(flask.url_for('render_budget_page'))
-    
+
+
 # ================================
 #           ADVICE PAGE
 # ================================
-
 @app.route('/advice')
 def advice_page():
     return flask.render_template('advice.html')
+
 
 # ================================
 #           LOGIN LOGIC
@@ -195,7 +196,7 @@ def create_user():
     if password != flask.request.form['confirm_password']:
         error = "Passwords don't match"
     # is the password long enough?
-    if len(password) <= 6:
+    if len(password) < 6:
         error = "Password must be at least 6 characters long"
     # is the login ok?
     if len(name) > 60:
